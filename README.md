@@ -15,11 +15,25 @@ The authoritative local checkout is:
 ~/Projects/fickledragon.com
 ```
 
-## Current state
+## Local development
 
-There is no website application or local runtime yet. No dependency install,
-build, or development-server command is currently required. The application
-and its documented setup will be introduced by the non-production MVP work.
+The non-production homepage prototype uses Next.js, React, and TypeScript.
+
+```bash
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000` to review it locally. Before opening a pull request,
+run:
+
+```bash
+npm run lint
+npm run build
+```
+
+The prototype is local only. It is not connected to Appwrite and must not be
+deployed to the production domain as part of issue #1.
 
 `WORDPRESS_SERIES_AND_BOOK_INVENTORY.md` is a dated factual inventory of the
 legacy site's published series and book pages. It is migration reference
@@ -55,4 +69,3 @@ focused implementation issues only when they become necessary for launch.
   production action.
 - Do not alter WordPress, Appwrite, hosting, DNS, or public URLs as part of
   repository bootstrap work.
-
