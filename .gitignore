@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# Environment files and local secrets
+.env
+.env.*
+!.env.example
+
+# JavaScript dependencies and build output
+node_modules/
+.next/
+out/
+dist/
+coverage/
+
+# Logs and editor state
+*.log
+.idea/
+.vscode/
+
