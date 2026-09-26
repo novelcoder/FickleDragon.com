@@ -62,13 +62,12 @@ rights inquiries, linking to `/rights` and `/contact`.
 
 ## Catalog scope
 
-The catalog should include every publicly known book associated with Jamie
-McFarlane or Mac Worden for which authoritative metadata is available. This
-includes historical, unavailable, and out-of-print titles as well as books
-published by another publisher or with a coauthor. Publisher, imprint,
-availability, and authorship must be represented accurately; inclusion must
-not imply that Fickle Dragon published or currently controls a title when it
-did not.
+The catalog should include every publicly known Fickle Dragon-published book
+associated with Jamie McFarlane or Mac Worden for which authoritative metadata
+is available. This includes historical, unavailable, and out-of-print titles.
+Space Troopers remains in the shared catalog but is excluded from this website
+because it was published by another publisher. Publisher, imprint,
+availability, and authorship must be represented accurately.
 
 Published and publicly announced forthcoming books may be visible. Private
 drafts, unannounced projects, and incomplete internal records must not be

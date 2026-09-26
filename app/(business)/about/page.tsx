@@ -1,13 +1,9 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/app/ui/business-page.module.css";
+import { staticPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About | Fickle Dragon Publishing",
-  description:
-    "Meet Fickle Dragon Publishing, an independent press for science fiction, fantasy, and mystery readers.",
-};
+export const metadata = staticPageMetadata("about");
 
 export default function AboutPage() {
   return (

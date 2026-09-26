@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
+import { SITE_ORIGIN, serializeJsonLd } from "@/config/seo.mjs";
 import { SiteFooter } from "@/app/ui/site-footer";
 import { SiteHeader } from "@/app/ui/site-header";
 import { findPublicBookBySlug } from "@/lib/catalog";
+import { bookMetadata } from "@/lib/seo";
 import styles from "./book.module.css";
 
 type BookPageProps = {
   params: Promise<{ slug: string }>;
 };
-
-const SITE_URL = "https://fickledragon.com";
 
 function formatReleaseDate(value?: string) {
   if (!value) return null;
@@ -22,39 +22,18 @@ function formatReleaseDate(value?: string) {
   }).format(new Date(value));
 }
 
-function metadataDescription(book: NonNullable<Awaited<ReturnType<typeof findPublicBookBySlug>>>) {
-  const source =
-    book.card_description?.trim() || book.tagline?.trim() || book.blurb?.trim();
-
-  if (!source || source.length <= 160) return source;
-  return `${source.slice(0, 157).trimEnd()}…`;
-}
-
 export async function generateMetadata({ params }: BookPageProps): Promise<Metadata> {
   const { slug } = await params;
   const book = await findPublicBookBySlug(slug);
 
   if (!book) {
-    return { title: "Book not found | Fickle Dragon Publishing" };
+    return {
+      title: "Book not found",
+      robots: { index: false, follow: false },
+    };
   }
 
-  const description = metadataDescription(book);
-  const canonical = `/books/${book.slug}`;
-
-  return {
-    title: `${book.title} | Fickle Dragon Publishing`,
-    description,
-    alternates: { canonical },
-    openGraph: {
-      type: "book",
-      url: canonical,
-      title: book.title,
-      description,
-      images: book.cover_url
-        ? [{ url: book.cover_url, alt: book.cover_alt ?? `${book.title} cover` }]
-        : undefined,
-    },
-  };
+  return bookMetadata(book);
 }
 
 export default async function BookPage({ params }: BookPageProps) {
@@ -73,20 +52,39 @@ export default async function BookPage({ params }: BookPageProps) {
   const bookJsonLd = {
     "@context": "https://schema.org",
     "@type": "Book",
+    "@id": `${SITE_ORIGIN}/books/${book.slug}#book`,
     name: book.title,
-    url: `${SITE_URL}/books/${book.slug}`,
+    url: `${SITE_ORIGIN}/books/${book.slug}`,
     image: book.cover_url,
-    description: book.card_description?.trim() || book.blurb?.trim(),
+    description,
     datePublished: book.release_date,
-    author: authors.map((author) => ({
-      "@type": "Person",
-      name: author.name,
-      url: author.canonical_url || undefined,
-    })),
+    author:
+      authors.length > 0
+        ? authors.map((author) => ({
+            "@type": "Person",
+            name: author.name,
+            url: author.canonical_url || undefined,
+          }))
+        : undefined,
+    isPartOf: book.series_id
+      ? {
+          "@type": "BookSeries",
+          name: book.series_id.name,
+        }
+      : undefined,
+    position: book.series_number,
+    identifier: book.kindle_asin
+      ? {
+          "@type": "PropertyValue",
+          propertyID: "ASIN",
+          value: book.kindle_asin,
+        }
+      : undefined,
     publisher: {
+      "@id": `${SITE_ORIGIN}/#organization`,
       "@type": "Organization",
       name: "Fickle Dragon Publishing LLC",
-      url: SITE_URL,
+      url: SITE_ORIGIN,
     },
   };
 
@@ -117,7 +115,7 @@ export default async function BookPage({ params }: BookPageProps) {
           </div>
 
           <div className={styles.copy}>
-            <p className={styles.eyebrow}>{seriesLabel ?? "A Fickle Dragon title"}</p>
+            <p className={styles.eyebrow}>{seriesLabel ?? "Publisher catalog title"}</p>
             <h1>{book.title}</h1>
             <p className={styles.byline}>
               by{" "}
@@ -176,7 +174,7 @@ export default async function BookPage({ params }: BookPageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(bookJsonLd).replace(/</g, "\\u003c"),
+          __html: serializeJsonLd(bookJsonLd),
         }}
       />
     </div>

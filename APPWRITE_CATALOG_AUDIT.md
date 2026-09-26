@@ -27,7 +27,9 @@ All 60 audited books have a title, slug, series relationship, blurb, cover URL,
 and at least one author relationship. Four currently lack a store URL.
 
 Only `published` and `coming_soon` books are eligible for public book pages.
-Any later private status remains unavailable even if its slug is requested.
+Space Troopers is additionally excluded because it was published by another
+publisher. Any later private status remains unavailable even if its slug is
+requested. No other outside-publisher series is expected in the public set.
 
 ## Author schema added during issue #6
 
@@ -51,7 +53,8 @@ Initial author rows and verified relationship counts:
 
 Three Space Troopers books are related to both Jamie McFarlane and Rachel
 Aukes. The relationship audit found no unassigned or incorrectly assigned book
-rows.
+rows. Those three books remain in the shared catalog but are deliberately
+excluded from the Fickle Dragon website.
 
 ## Public book route
 

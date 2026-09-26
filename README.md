@@ -37,6 +37,11 @@ on the server. Copy `.env.example` to `.env.local` and provide a server-only
 `CATALOG_API_KEY` with `rows.read` access. Do not expose this key through a
 `NEXT_PUBLIC_` variable.
 
+Indexing is separately controlled by the server-only `SITE_INDEXING_ENABLED`
+variable. Leave it false or unset for local, preview, and staging deployments.
+Set it to the exact value `true` only for the approved production deployment;
+otherwise pages, `robots.txt`, and `sitemap.xml` remain non-indexable.
+
 The homepage began as the local issue #1 prototype. Issue #6 connects its book
 routes to the shared Appwrite catalog; deployment environments must provide the
 same server-only catalog variable before those routes can run.

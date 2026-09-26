@@ -1,11 +1,7 @@
-import type { Metadata } from "next";
 import styles from "@/app/ui/business-page.module.css";
+import { staticPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact | Fickle Dragon Publishing",
-  description:
-    "Contact Fickle Dragon Publishing about books, rights, review copies, media, or website questions.",
-};
+export const metadata = staticPageMetadata("contact");
 
 export default function ContactPage() {
   return (

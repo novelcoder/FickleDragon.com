@@ -1,27 +1,9 @@
 import type { Metadata, Viewport } from "next";
+import { serializeJsonLd } from "@/config/seo.mjs";
+import { organizationJsonLd, rootMetadata } from "@/lib/seo";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://fickledragon.com"),
-  title: "Fickle Dragon Publishing",
-  description:
-    "Independent science fiction, fantasy, and mysteries from Jamie McFarlane and Mac Worden.",
-  icons: {
-    icon: [
-      {
-        url: "/images/brand/fickle-dragon-favicon-32.png",
-        sizes: "32x32",
-        type: "image/png",
-      },
-      {
-        url: "/images/brand/fickle-dragon-favicon-512.png",
-        sizes: "512x512",
-        type: "image/png",
-      },
-    ],
-    apple: "/images/brand/fickle-dragon-favicon-512.png",
-  },
-};
+export const metadata: Metadata = rootMetadata;
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -36,7 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(organizationJsonLd) }}
+        />
+      </body>
     </html>
   );
 }
