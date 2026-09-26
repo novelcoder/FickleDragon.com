@@ -1,8 +1,11 @@
 import type { NextConfig } from "next";
 import path from "node:path";
 
+import { legacyRedirectsForNext } from "./config/legacy-redirects.mjs";
+
 const nextConfig: NextConfig = {
   output: "standalone",
+  skipTrailingSlashRedirect: true,
   images: {
     remotePatterns: [
       {
@@ -13,6 +16,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  redirects: legacyRedirectsForNext,
   turbopack: {
     root: path.resolve(__dirname),
   },

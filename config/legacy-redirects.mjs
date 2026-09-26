@@ -1,0 +1,185 @@
+export const legacySeriesRedirectManifest = [
+  {
+    source: "/junkyard-pirate-series",
+    destination: "https://www.jamiemcfarlane.com/JunkyardPirate",
+    status: 308,
+    rationale: "The reader-facing Junkyard Pirate series page belongs to Jamie McFarlane.",
+  },
+  {
+    source: "/spaceship-mechanic",
+    destination: "https://www.jamiemcfarlane.com/SpaceshipMechanic",
+    status: 308,
+    rationale: "The reader-facing Spaceship Mechanic series page belongs to Jamie McFarlane.",
+  },
+  {
+    source: "/oldest-starfighter-series",
+    destination:
+      "https://www.jamiemcfarlane.com/ScienceFictionAdventures#oldest-starfighter",
+    status: 308,
+    rationale: "Oldest Starfighter is presented in Jamie McFarlane's science-fiction hub.",
+  },
+  {
+    source: "/privateer-tales-series",
+    destination: "https://www.jamiemcfarlane.com/PrivateerTales",
+    status: 308,
+    rationale: "The reader-facing Privateer Tales series page belongs to Jamie McFarlane.",
+  },
+  {
+    source: "/afterwar-saga",
+    destination: "https://www.jamiemcfarlane.com/PrivateerTales#afterwar",
+    status: 308,
+    rationale: "Afterwar Saga is presented with its parent Privateer Tales universe.",
+  },
+  {
+    source: "/books-witchy-world-series",
+    destination: "https://www.jamiemcfarlane.com/WitchyWorld",
+    status: 308,
+    rationale: "The reader-facing Witchy World series page belongs to Jamie McFarlane.",
+  },
+  {
+    source: "/henry-biggston-thriller-series",
+    destination: "https://www.macworden.com/HenryBiggston",
+    status: 308,
+    rationale: "The current Henry Biggston reader-facing destination belongs to Mac Worden.",
+  },
+];
+
+const legacyBookRedirectDefinitions = [
+  ["/junkyard-pirate", "junkyard-pirate", "Junkyard Pirate"],
+  [
+    "/junkyard-pirate-2",
+    "junkyard-pirate",
+    "the duplicate Junkyard Pirate page",
+  ],
+  ["/old-dogs", "old-dogs-older-tricks", "Old Dogs, Older Tricks"],
+  ["/junkyard-spaceship", "junkyard-spaceship", "Junkyard Spaceship"],
+  ["/junkyard-veterans", "junkyard-veterans", "Junkyard Veterans"],
+  ["/junkyard-raiders", "junkyard-raiders", "Junkyard Raiders"],
+  ["/junkyard-ghost-ship", "junkyard-ghost-ship", "Junkyard Ghost Ship"],
+  ["/junkyard-commandos", "junkyard-commandos", "Junkyard Commandos"],
+  ["/junkyard-mercenary", "junkyard-mercenary", "Junkyard Mercenary"],
+  ["/junkyard-saboteur", "junkyard-saboteur", "Junkyard Saboteur"],
+  [
+    "/boltguns-and-ducttape",
+    "boltguns-and-duct-tape",
+    "Boltguns and Duct Tape",
+  ],
+  [
+    "/jump-drives-and-coffee-stains",
+    "jump-drives-and-coffee-stains",
+    "Jump Drives and Coffee Stains",
+  ],
+  ["/rayguns-latefees", "ray-guns-and-late-fees", "Ray Guns and Late Fees"],
+  [
+    "/flying-saucers-and-chrome-plate",
+    "flying-saucers-and-chrome-plate",
+    "Flying Saucers and Chrome Plate",
+  ],
+  ["/oldest-starfighter", "oldest-starfighter", "The Oldest Starfighter"],
+  ["/rogue-commander", "rogue-commander", "Rogue Commander"],
+  ["/rookie-privateer", "rookie-privateer", "Rookie Privateer"],
+  ["/fool-me-once", "fool-me-once", "Fool Me Once"],
+  ["/parley", "parley", "Parley"],
+  ["/big-pete", "big-pete", "Big Pete"],
+  ["/smugglers-dilemma", "smugglers-dilemma", "Smuggler's Dilemma"],
+  ["/cutpurse", "cutpurse", "Cutpurse"],
+  ["/out-of-the-tank-3", "out-of-the-tank", "Out of the Tank"],
+  ["/buccaneers-2", "buccaneers", "Buccaneers"],
+  ["/a-matter-of-honor", "a-matter-of-honor", "A Matter of Honor"],
+  ["/givenoquarter", "give-no-quarter", "Give No Quarter"],
+  ["/blockade-runner", "blockade-runner", "Blockade Runner"],
+  ["/corsair-menace", "corsair-menace", "Corsair Menace"],
+  ["/pursuit-of-the-bold", "pursuit-of-the-bold", "Pursuit of the Bold"],
+  ["/fury-of-the-bold", "fury-of-the-bold", "Fury of the Bold"],
+  [
+    "/judgment-of-the-bold",
+    "judgment-of-the-bold",
+    "Judgment of the Bold",
+  ],
+  ["/privateers-in-exile", "privateers-in-exile", "Privateers in Exile"],
+  [
+    "/incursion-at-elea-station",
+    "incursion-at-elea-station",
+    "Incursion at Elea Station",
+  ],
+  ["/freebooters", "freebooters-hold", "Freebooter's Hold"],
+  ["/blackcutlass", "black-cutlass", "Black Cutlass"],
+  [
+    "/privateers-supremacy",
+    "privateers-supremacy",
+    "Privateer's Supremacy",
+  ],
+  ["/brigands-choice", "brigands-choice", "Brigand's Choice"],
+  ["/hostile-legacy", "hostile-legacy", "Hostile Legacy"],
+  ["/forsaken-colony", "forsaken-colony", "Forsaken Colony"],
+  [
+    "/wizard-in-a-witchy-world",
+    "wizard-in-a-witchy-world",
+    "Wizard in a Witchy World",
+  ],
+  ["/wicked-folk", "wicked-folk", "Wicked Folk"],
+  ["/wizard-unleashed", "wizard-unleashed", "Wizard Unleashed"],
+  ["/when-justice-calls", "when-justice-calls", "When Justice Calls"],
+  [
+    "/deputy-in-the-crosshairs",
+    "deputy-crosshairs",
+    "Deputy in the Crosshairs",
+  ],
+  ["/manhunt-at-sage-creek", "manhunt-sage-creek", "Manhunt at Sage Creek"],
+  ["/lesser-prince-2", "lesser-prince", "Lesser Prince"],
+  [
+    "/lesser-prince",
+    "lesser-prince",
+    "the Guardians of Gaeland placeholder for Lesser Prince",
+  ],
+  ["/uncommon-bravery", "uncommon-bravery", "Uncommon Bravery"],
+  ["/pale-ship", "on-a-pale-ship", "On a Pale Ship"],
+  [
+    "/pete-popeye-olive",
+    "pete-popeye-and-olive",
+    "Pete, Popeye and Olive",
+  ],
+  [
+    "/grave-consideration-witchy-world",
+    "grave-consideration",
+    "Grave Consideration",
+  ],
+];
+
+export const legacyBookRedirectManifest = legacyBookRedirectDefinitions.map(
+  ([source, slug, title]) => ({
+    source,
+    destination: `/books/${slug}`,
+    status: 308,
+    rationale: `${title} now has a canonical Fickle Dragon publisher book record.`,
+  }),
+);
+
+export const legacyRedirectManifest = [
+  ...legacySeriesRedirectManifest,
+  ...legacyBookRedirectManifest,
+];
+
+export const canonicalBookTrailingSlashRedirect = {
+  source: "/books/:slug/",
+  destination: "/books/:slug",
+  permanent: true,
+};
+
+export function legacyRedirectsForNext() {
+  return [
+    ...legacyRedirectManifest.flatMap(({ source, destination, status }) => [
+      {
+        source,
+        destination,
+        permanent: status === 308,
+      },
+      {
+        source: `${source}/`,
+        destination,
+        permanent: status === 308,
+      },
+    ]),
+    canonicalBookTrailingSlashRedirect,
+  ];
+}

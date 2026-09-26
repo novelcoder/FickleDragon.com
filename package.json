@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "node --test tests/legacy-redirects.test.mjs",
+    "test:redirects:integration": "npm run build && node --test tests/legacy-redirects.integration.mjs"
   },
   "dependencies": {
     "next": "16.3.6",
