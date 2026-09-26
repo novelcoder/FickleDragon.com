@@ -1,6 +1,11 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import test from "node:test";
 
+import {
+  legacyBlogFeedRedirect,
+  legacyBlogRedirectManifest,
+} from "../config/legacy-blog-redirects.mjs";
 import {
   canonicalBookTrailingSlashRedirect,
   legacyBookRedirectManifest,
@@ -131,12 +136,54 @@ test("the approved book mappings are exact and permanent", () => {
   }
 });
 
+test("the migrated blog mapping is complete and unchanged", () => {
+  assert.equal(legacyBlogRedirectManifest.length, 156);
+
+  const mappingDigest = createHash("sha256")
+    .update(
+      legacyBlogRedirectManifest
+        .map(({ source, destination }) => `${source} -> ${destination}`)
+        .join("\n"),
+    )
+    .digest("hex");
+
+  assert.equal(
+    mappingDigest,
+    "d3454c3c80776e48213224916cbf619237cc887202f0fa12b8220fd36821c5bf",
+  );
+
+  for (const redirect of legacyBlogRedirectManifest) {
+    assert.match(
+      redirect.source,
+      /^\/\d{4}\/\d{2}\/\d{2}\/[a-z0-9]+(?:-[a-z0-9]+)*$/,
+    );
+    assert.match(
+      redirect.destination,
+      /^https:\/\/www\.jamiemcfarlane\.com\/news\/[a-z0-9]+(?:-[a-z0-9]+)*$/,
+    );
+    assert.equal(redirect.status, 308);
+    assert.ok(redirect.rationale.length > 0);
+  }
+});
+
+test("the legacy feed redirects directly to Jamie's canonical feed", () => {
+  assert.deepEqual(legacyBlogFeedRedirect, {
+    source: "/feed",
+    destination: "https://www.jamiemcfarlane.com/feed",
+    status: 308,
+    rationale: "Jamie McFarlane's RSS feed is the canonical author-news feed.",
+  });
+});
+
 test("the manifest has unique normalized sources and safe destinations", () => {
   const sources = legacyRedirectManifest.map(({ source }) => source);
   assert.equal(new Set(sources).size, sources.length);
 
   for (const { source, destination } of legacyRedirectManifest) {
-    assert.match(source, /^\/[a-z0-9]+(?:-[a-z0-9]+)*$/);
+    assert.match(
+      source,
+      /^\/(?:[a-z0-9]+(?:-[a-z0-9]+)*|\d{4}\/\d{2}\/\d{2}\/[a-z0-9]+(?:-[a-z0-9]+)*)$/,
+    );
 
     if (destination.startsWith("/")) {
       assert.match(destination, /^\/books\/[a-z0-9]+(?:-[a-z0-9]+)*$/);
@@ -163,7 +210,9 @@ test("no configured destination creates a redirect chain or loop", () => {
 
   for (const { destination } of legacyRedirectManifest) {
     const target = new URL(destination, "https://fickledragon.com");
-    assert.ok(!sources.has(target.pathname));
+    if (target.origin === "https://fickledragon.com") {
+      assert.ok(!sources.has(target.pathname));
+    }
   }
 });
 

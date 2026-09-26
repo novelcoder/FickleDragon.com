@@ -1,3 +1,8 @@
+import {
+  legacyBlogFeedRedirect,
+  legacyBlogRedirectManifest,
+} from "./legacy-blog-redirects.mjs";
+
 export const legacySeriesRedirectManifest = [
   {
     source: "/junkyard-pirate-series",
@@ -158,6 +163,8 @@ export const legacyBookRedirectManifest = legacyBookRedirectDefinitions.map(
 export const legacyRedirectManifest = [
   ...legacySeriesRedirectManifest,
   ...legacyBookRedirectManifest,
+  ...legacyBlogRedirectManifest,
+  legacyBlogFeedRedirect,
 ];
 
 export const canonicalBookTrailingSlashRedirect = {
