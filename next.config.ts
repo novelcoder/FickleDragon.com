@@ -5,6 +5,7 @@ import { legacyRedirectsForNext } from "./config/legacy-redirects.mjs";
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  skipTrailingSlashRedirect: true,
   images: {
     remotePatterns: [
       {
