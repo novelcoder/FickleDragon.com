@@ -32,8 +32,14 @@ npm run lint
 npm run build
 ```
 
-The prototype is local only. It is not connected to Appwrite and must not be
-deployed to the production domain as part of issue #1.
+Book pages are served from `/books/[slug]` and load the shared Appwrite catalog
+on the server. Copy `.env.example` to `.env.local` and provide a server-only
+`CATALOG_API_KEY` with `rows.read` access. Do not expose this key through a
+`NEXT_PUBLIC_` variable.
+
+The homepage began as the local issue #1 prototype. Issue #6 connects its book
+routes to the shared Appwrite catalog; deployment environments must provide the
+same server-only catalog variable before those routes can run.
 
 `WORDPRESS_SERIES_AND_BOOK_INVENTORY.md` is a dated factual inventory of the
 legacy site's published series and book pages. It is migration reference
