@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://fickledragon.com"),
   title: "Fickle Dragon Publishing",
   description:
     "Independent science fiction, fantasy, and mysteries from Jamie McFarlane and Mac Worden.",
