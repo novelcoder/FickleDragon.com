@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
+import { SiteFooter } from "@/app/ui/site-footer";
+import { SiteHeader } from "@/app/ui/site-header";
 import { findPublicBookBySlug } from "@/lib/catalog";
 import styles from "./book.module.css";
 
@@ -90,25 +92,7 @@ export default async function BookPage({ params }: BookPageProps) {
 
   return (
     <div className={styles.shell}>
-      <header className={styles.header}>
-        <Link className={styles.brand} href="/" aria-label="Fickle Dragon Publishing home">
-          <Image
-            src="/images/brand/fickle-dragon-favicon-512.png"
-            alt=""
-            width={48}
-            height={48}
-            priority
-          />
-          <span>
-            <strong>Fickle Dragon</strong>
-            <small>Publishing LLC</small>
-          </span>
-        </Link>
-        <nav aria-label="Book page navigation">
-          <Link href="/#series">Popular series</Link>
-          <Link href="/#catalogs">Author catalogs</Link>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <main className={styles.main}>
         <Link className={styles.backLink} href="/">
@@ -187,10 +171,7 @@ export default async function BookPage({ params }: BookPageProps) {
         </article>
       </main>
 
-      <footer className={styles.footer}>
-        <span>Fickle Dragon Publishing LLC · An independent press</span>
-        <a href="mailto:jamie@fickledragon.com">jamie@fickledragon.com</a>
-      </footer>
+      <SiteFooter />
 
       <script
         type="application/ld+json"

@@ -1,4 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
+import { SiteFooter } from "@/app/ui/site-footer";
+import { SiteHeader } from "@/app/ui/site-header";
 
 const series = [
   {
@@ -46,27 +49,7 @@ const series = [
 export default function Home() {
   return (
     <div className="site-shell">
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="Fickle Dragon Publishing home">
-          <Image
-            src="/images/brand/fickle-dragon-favicon-512.png"
-            alt=""
-            width={54}
-            height={54}
-            priority
-          />
-          <span>
-            <strong>Fickle Dragon</strong>
-            <small>Publishing LLC</small>
-          </span>
-        </a>
-        <nav aria-label="Primary navigation">
-          <a href="#series">Popular series</a>
-          <a href="#catalogs">Browse by name</a>
-          <a href="#news">News</a>
-          <a href="#about">About us</a>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <main id="top">
         <section className="hero" aria-labelledby="hero-heading">
@@ -194,6 +177,9 @@ export default function Home() {
               every series a long life, keep the catalog easy to explore, and put
               readers one click away from the stories they want.
             </p>
+            <Link className="text-link text-link-light" href="/about">
+              More about Fickle Dragon
+            </Link>
           </div>
           <div className="about-mark" aria-hidden="true">
             <Image
@@ -205,38 +191,30 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section news-section" id="news" aria-labelledby="news-heading">
+        <section className="section business-section" aria-labelledby="business-heading">
           <div>
-            <p className="eyebrow warm">From the press</p>
-            <h2 id="news-heading">News &amp; releases</h2>
+            <p className="eyebrow warm">For the book trade</p>
+            <h2 id="business-heading">Need details beyond the jacket copy?</h2>
           </div>
-          <div className="news-placeholder">
+          <div className="business-invitation">
             <p>
-              Release announcements, cover reveals, and selected behind-the-book
-              updates will live here once the publishing workflow is connected.
+              Booksellers, librarians, reviewers, media contacts, and prospective
+              rights partners are welcome to ask for current, title-specific
+              information.
             </p>
-            <span>Planned for a later project phase</span>
+            <div className="business-actions">
+              <Link className="text-link" href="/rights">
+                Rights &amp; trade information
+              </Link>
+              <Link className="text-link" href="/contact">
+                Contact the press
+              </Link>
+            </div>
           </div>
         </section>
       </main>
 
-      <footer className="site-footer">
-        <div className="footer-brand">
-          <Image
-            src="/images/brand/fickle-dragon-favicon-32.png"
-            alt=""
-            width={32}
-            height={32}
-          />
-          <span>Fickle Dragon Publishing LLC · An independent press</span>
-        </div>
-        <div className="footer-links" aria-label="Footer links">
-          <span>Contact · coming soon</span>
-          <span>Rights &amp; trade · coming soon</span>
-          <a href="https://jamiemcfarlane.com">Jamie McFarlane</a>
-          <a href="https://macworden.com">Mac Worden</a>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
