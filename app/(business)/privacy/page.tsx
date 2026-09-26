@@ -1,11 +1,7 @@
-import type { Metadata } from "next";
 import styles from "@/app/ui/business-page.module.css";
+import { staticPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Privacy | Fickle Dragon Publishing",
-  description:
-    "How Fickle Dragon Publishing handles website visits, email inquiries, and external links.",
-};
+export const metadata = staticPageMetadata("privacy");
 
 export default function PrivacyPage() {
   return (

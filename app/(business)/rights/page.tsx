@@ -1,11 +1,7 @@
-import type { Metadata } from "next";
 import styles from "@/app/ui/business-page.module.css";
+import { staticPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Rights & Trade | Fickle Dragon Publishing",
-  description:
-    "Bookseller, library, reviewer, media, and rights information from Fickle Dragon Publishing.",
-};
+export const metadata = staticPageMetadata("rights");
 
 export default function RightsPage() {
   return (

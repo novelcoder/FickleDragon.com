@@ -1,11 +1,10 @@
 import "server-only";
+import { isPublicCatalogBook } from "@/config/catalog-policy.mjs";
 
 const APPWRITE_ENDPOINT = "https://sfo.cloud.appwrite.io/v1";
 const APPWRITE_PROJECT_ID = "6a0b4638002a71c2b8ec";
 const APPWRITE_DATABASE_ID = "6a0b628900008b8506e3";
 const BOOKS_TABLE_ID = "books";
-
-const PUBLIC_STATUSES = new Set(["published", "coming_soon"]);
 
 export type CatalogAuthor = {
   $id: string;
@@ -22,6 +21,7 @@ export type CatalogSeries = {
 
 export type CatalogBook = {
   $id: string;
+  $updatedAt?: string;
   title: string;
   slug: string;
   tagline?: string;
@@ -59,7 +59,7 @@ function query(method: string, values: Array<string | number>) {
   return `queries[]=${encodeURIComponent(JSON.stringify({ method, values }))}`;
 }
 
-async function listPublicBooks() {
+export async function getPublicBooks() {
   const books: CatalogBook[] = [];
   const pageSize = 100;
   let total = pageSize;
@@ -94,7 +94,7 @@ async function listPublicBooks() {
     }
   }
 
-  return books.filter((book) => PUBLIC_STATUSES.has(book.status ?? ""));
+  return books.filter(isPublicCatalogBook);
 }
 
 export function slugLookupKey(value: string) {
@@ -103,7 +103,7 @@ export function slugLookupKey(value: string) {
 
 export async function findPublicBookBySlug(requestedSlug: string) {
   const lookupKey = slugLookupKey(requestedSlug);
-  const books = await listPublicBooks();
+  const books = await getPublicBooks();
   const matches = books.filter((book) => slugLookupKey(book.slug) === lookupKey);
 
   if (matches.length > 1) {
