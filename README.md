@@ -42,6 +42,22 @@ variable. Leave it false or unset for local, preview, and staging deployments.
 Set it to the exact value `true` only for the approved production deployment;
 otherwise pages, `robots.txt`, and `sitemap.xml` remain non-indexable.
 
+Optional analytics uses the existing Fickle Dragon GA4 property. Set the
+server-only `GA4_MEASUREMENT_ID` to `G-SS2ZB4J95T` in an environment where
+analytics is intentionally enabled. Missing or malformed values disable both
+the Google tag and the consent interface. The browser receives the validated
+ID through the root layout; it is not configured with a `NEXT_PUBLIC_`
+variable.
+
+The site uses first-party basic consent mode: it does not load Google code or
+send Analytics requests until a visitor selects **Allow analytics**. Consent
+and GA cookies have a six-month maximum. Page views are sent manually with
+automatic page views disabled so Next.js navigation records one event per URL.
+Keep the GA4 web stream's Enhanced Measurement option **Page changes based on
+browser history events** disabled; Google documents that this provider-side
+option can independently emit history page views even when
+`send_page_view: false`, which would duplicate the application events.
+
 The homepage began as the local issue #1 prototype. Issue #6 connects its book
 routes to the shared Appwrite catalog; deployment environments must provide the
 same server-only catalog variable before those routes can run.

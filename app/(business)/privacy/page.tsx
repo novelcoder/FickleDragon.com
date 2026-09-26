@@ -25,8 +25,8 @@ export default function PrivacyPage() {
           <h2>Information handled by this site</h2>
           <p>
             This site does not currently offer visitor accounts, comments,
-            checkout, or a contact form. We do not currently use advertising
-            pixels or intentionally set analytics cookies.
+            checkout, or a contact form. We do not use advertising pixels,
+            advertising cookies, or personalized advertising.
           </p>
           <p>
             Like most hosted websites, the hosting and delivery systems may
@@ -60,12 +60,67 @@ export default function PrivacyPage() {
             policies apply after you follow those links.
           </p>
 
-          <h2>Future analytics and site features</h2>
+          <h2>Optional Google Analytics</h2>
           <p>
-            Fickle Dragon expects to add privacy-conscious analytics. If
-            analytics, optional cookies, embedded media, forms, or other data-
-            collecting features are introduced, this policy and any required
-            consent controls will be updated to match the implemented behavior.
+            If you select <strong>Allow analytics</strong>, this site loads
+            Google Analytics 4 for the existing Fickle Dragon property. We use
+            it to understand aggregate activity such as which pages are visited,
+            how visitors reached the site, and general usage patterns. Declining
+            analytics does not affect site functionality, and no Google
+            Analytics script, request, or cookie is initiated before consent.
+          </p>
+          <p>
+            When allowed, Google Analytics may receive the page URL and title,
+            visit time, referring page, approximate location, and browser,
+            device, operating-system, and screen information. Google uses IP
+            addresses during collection for routing and approximate location;
+            Google states that GA4 does not log or store individual IP addresses.
+            We do not intentionally send names, email addresses, or other direct
+            identifiers.
+          </p>
+          <p>
+            Advertising storage, advertising user data, advertising
+            personalization, Google Signals, and ad-personalization signals are
+            disabled in this implementation. This site does not use Google
+            Analytics for remarketing or advertising profiles.
+          </p>
+
+          <h2>Cookies and retention</h2>
+          <p>
+            The first-party <code>fd_analytics_consent</code> cookie remembers
+            whether you allowed or declined analytics for six months. It is
+            necessary to respect your choice. If you allow analytics, Google may
+            also create the first-party <code>_ga</code> cookie to distinguish a
+            pseudonymous browser and a <code>_ga_&lt;measurement-id&gt;</code>
+            cookie to preserve session state. We configure those Analytics
+            cookies with a maximum duration of six months from consent; their
+            expiry is not extended on each page view.
+          </p>
+
+          <h2>Review or withdraw consent</h2>
+          <p>
+            Use the persistent <strong>Cookie settings</strong> button at the
+            lower left of any page to review or change your choice. If you
+            withdraw consent, the site disables further Analytics collection and
+            attempts to delete accessible first-party <code>_ga</code> cookies
+            for this site. Browser restrictions, a different cookie domain or
+            path, or cookies already removed by the browser can limit what
+            client-side deletion can reach. Withdrawing consent does not remove
+            aggregate or previously collected data already processed by Google.
+          </p>
+          <p>
+            Google provides more information in its{" "}
+            <a
+              href="https://support.google.com/analytics/answer/6004245"
+              rel="noreferrer"
+            >
+              Google Analytics data safeguards
+            </a>{" "}
+            and{" "}
+            <a href="https://policies.google.com/privacy" rel="noreferrer">
+              privacy policy
+            </a>
+            .
           </p>
 
           <h2>Questions</h2>
