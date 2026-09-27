@@ -25,7 +25,7 @@ const series = [
     imagePosition: "68% center",
   },
   {
-    name: "Jack and Coke",
+    name: "Jack and Cocoa Mysteries",
     author: "Mac Worden",
     genre: "Mystery",
     hook: "Sharp cases and harder consequences.",
