@@ -11,6 +11,10 @@ import {
   serializeJsonLd,
 } from "../config/seo.mjs";
 
+test("the canonical origin is the public www host", () => {
+  assert.equal(SITE_ORIGIN, "https://www.fickledragon.com");
+});
+
 test("indexing is opt-in and requires the exact true value", () => {
   assert.equal(isIndexingEnabled(undefined), false);
   assert.equal(isIndexingEnabled("false"), false);

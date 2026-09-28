@@ -13,6 +13,7 @@ import {
   legacyRedirectsForNext,
   legacySeriesRedirectManifest,
 } from "../config/legacy-redirects.mjs";
+import { SITE_ORIGIN } from "../config/seo.mjs";
 
 const expectedSeriesMappings = new Map([
   [
@@ -209,8 +210,8 @@ test("no configured destination creates a redirect chain or loop", () => {
   const sources = new Set(legacyRedirectManifest.map(({ source }) => source));
 
   for (const { destination } of legacyRedirectManifest) {
-    const target = new URL(destination, "https://fickledragon.com");
-    if (target.origin === "https://fickledragon.com") {
+    const target = new URL(destination, SITE_ORIGIN);
+    if (target.origin === SITE_ORIGIN) {
       assert.ok(!sources.has(target.pathname));
     }
   }

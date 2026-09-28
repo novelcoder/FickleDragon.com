@@ -1,6 +1,6 @@
 import { isPublicCatalogBook } from "./catalog-policy.mjs";
 
-export const SITE_ORIGIN = "https://fickledragon.com";
+export const SITE_ORIGIN = "https://www.fickledragon.com";
 export const SITE_NAME = "Fickle Dragon Publishing";
 export const ORGANIZATION_NAME = "Fickle Dragon Publishing LLC";
 export const DEFAULT_DESCRIPTION =
