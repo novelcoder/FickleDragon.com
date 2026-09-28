@@ -6,7 +6,8 @@ submission, or WordPress retirement.
 
 ## Canonical publishing policy
 
-- The canonical origin is `https://fickledragon.com` without `www`.
+- The canonical origin is `https://www.fickledragon.com`. Cloudflare redirects
+  the apex domain to this host while preserving the request path and query.
 - Current canonical static routes are `/`, `/about`, `/contact`, `/rights`, and
   `/privacy`.
 - Public book records use `/books/[stored-slug]`. Recognized case, punctuation,
@@ -53,7 +54,7 @@ Indexing is intentionally opt-in through the server-side
 
 Local, preview, and Appwrite staging deployments must keep the setting false.
 The production deployment should set it true only as part of the approved
-launch work, when `fickledragon.com` serves this application.
+launch work, when `www.fickledragon.com` serves this application.
 
 ## Verification
 
