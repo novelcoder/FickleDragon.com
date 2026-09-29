@@ -14,6 +14,7 @@ export function SiteFooter() {
         <span>Fickle Dragon Publishing LLC · An independent press</span>
       </div>
       <div className="footer-links" aria-label="Footer links">
+        <Link href="/shop">Signed books</Link>
         <Link href="/contact">Contact</Link>
         <Link href="/rights">Rights &amp; trade</Link>
         <Link href="/privacy">Privacy</Link>

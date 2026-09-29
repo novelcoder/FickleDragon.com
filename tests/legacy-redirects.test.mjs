@@ -11,6 +11,7 @@ import {
   legacyBookRedirectManifest,
   legacyRedirectManifest,
   legacyRedirectsForNext,
+  legacyRetailerRedirectManifest,
   legacySeriesRedirectManifest,
 } from "../config/legacy-redirects.mjs";
 import { SITE_ORIGIN } from "../config/seo.mjs";
@@ -44,6 +45,11 @@ const expectedSeriesMappings = new Map([
     "/henry-biggston-thriller-series",
     "https://www.macworden.com/HenryBiggston",
   ],
+]);
+
+const expectedRetailerMappings = new Map([
+  ["/stray-evidence-amazon", "https://geni.us/stray-evidence"],
+  ["/bitterlakeletters-amazon", "https://geni.us/BitterLakeLetters"],
 ]);
 
 const expectedBookMappings = new Map([
@@ -127,6 +133,16 @@ test("the approved series mappings are exact and permanent", () => {
   }
 });
 
+test("the approved retailer mappings are exact and permanent", () => {
+  assert.equal(legacyRetailerRedirectManifest.length, expectedRetailerMappings.size);
+
+  for (const redirect of legacyRetailerRedirectManifest) {
+    assert.equal(redirect.destination, expectedRetailerMappings.get(redirect.source));
+    assert.equal(redirect.status, 308);
+    assert.ok(redirect.rationale.length > 0);
+  }
+});
+
 test("the approved book mappings are exact and permanent", () => {
   assert.equal(legacyBookRedirectManifest.length, expectedBookMappings.size);
 
@@ -192,7 +208,7 @@ test("the manifest has unique normalized sources and safe destinations", () => {
       const target = new URL(destination);
       assert.equal(target.protocol, "https:");
       assert.ok(
-        ["www.jamiemcfarlane.com", "www.macworden.com"].includes(target.hostname),
+        ["www.jamiemcfarlane.com", "www.macworden.com", "geni.us"].includes(target.hostname),
       );
     }
   }

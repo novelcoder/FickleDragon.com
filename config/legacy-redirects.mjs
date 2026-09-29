@@ -160,8 +160,25 @@ export const legacyBookRedirectManifest = legacyBookRedirectDefinitions.map(
   }),
 );
 
+export const legacyRetailerRedirectManifest = [
+  {
+    source: "/stray-evidence-amazon",
+    destination: "https://geni.us/stray-evidence",
+    status: 308,
+    rationale: "Stray Evidence retailer link used by the shared catalog.",
+  },
+  {
+    // Matching ignores case, so this also serves /BitterLakeLetters-Amazon.
+    source: "/bitterlakeletters-amazon",
+    destination: "https://geni.us/BitterLakeLetters",
+    status: 308,
+    rationale: "Bitter Lake Letters retailer link used by the shared catalog.",
+  },
+];
+
 export const legacyRedirectManifest = [
   ...legacySeriesRedirectManifest,
+  ...legacyRetailerRedirectManifest,
   ...legacyBookRedirectManifest,
   ...legacyBlogRedirectManifest,
   legacyBlogFeedRedirect,
