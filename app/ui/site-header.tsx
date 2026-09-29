@@ -19,6 +19,7 @@ export function SiteHeader() {
       </Link>
       <nav aria-label="Primary navigation">
         <Link href="/#series">Books</Link>
+        <Link href="/shop">Signed Books</Link>
         <Link href="/about">About</Link>
         <Link href="/contact">Contact</Link>
       </nav>

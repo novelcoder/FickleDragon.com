@@ -668,7 +668,7 @@ h2 {
 
   .site-header nav {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0;
     border-top: 1px solid var(--rule);
   }
@@ -701,7 +701,7 @@ h2 {
 
 @media (max-width: 700px) {
   .site-header nav {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .site-header nav a {

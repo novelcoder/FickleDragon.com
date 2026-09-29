@@ -45,6 +45,14 @@ export const STATIC_PAGE_SEO = Object.freeze({
     changeFrequency: "yearly",
     priority: 0.6,
   }),
+  shop: Object.freeze({
+    path: "/shop",
+    title: "Signed Books from the Fickle Dragon Bookshop",
+    description:
+      "Signed paperback editions of Stray Evidence and Bitter Lake Letters by Mac Worden, with free shipping in the contiguous United States.",
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }),
   privacy: Object.freeze({
     path: "/privacy",
     title: "Privacy",
