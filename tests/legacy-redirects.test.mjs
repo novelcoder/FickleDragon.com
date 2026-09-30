@@ -50,6 +50,12 @@ const expectedSeriesMappings = new Map([
 const expectedRetailerMappings = new Map([
   ["/stray-evidence-amazon", "https://geni.us/stray-evidence"],
   ["/bitterlakeletters-amazon", "https://geni.us/BitterLakeLetters"],
+  // Reused pre-existing geni.us codes (not always the book slug).
+  ["/when-justice-calls-amazon", "https://geni.us/justicecalls"],
+  ["/junkyard-amazon", "https://geni.us/junkyard-pirate"],
+  ["/mercenary-amazon", "https://geni.us/mercenary-amazon"],
+  ["/rookie-privateer-amazon", "https://geni.us/rookieprivateer"],
+  ["/wizard-in-a-witchy-world-amazon", "https://geni.us/wizwitchy"],
 ]);
 
 const expectedBookMappings = new Map([
@@ -134,10 +140,18 @@ test("the approved series mappings are exact and permanent", () => {
 });
 
 test("the approved retailer mappings are exact and permanent", () => {
-  assert.equal(legacyRetailerRedirectManifest.length, expectedRetailerMappings.size);
+  const bySource = new Map(
+    legacyRetailerRedirectManifest.map((redirect) => [redirect.source, redirect]),
+  );
+  assert.equal(bySource.size, legacyRetailerRedirectManifest.length, "sources are unique");
+
+  for (const [source, destination] of expectedRetailerMappings) {
+    assert.equal(bySource.get(source)?.destination, destination, source);
+  }
 
   for (const redirect of legacyRetailerRedirectManifest) {
-    assert.equal(redirect.destination, expectedRetailerMappings.get(redirect.source));
+    assert.match(redirect.source, /^\/[a-z0-9]+(?:-[a-z0-9]+)*-amazon$/);
+    assert.match(redirect.destination, /^https:\/\/geni\.us\/[A-Za-z0-9-]+$/);
     assert.equal(redirect.status, 308);
     assert.ok(redirect.rationale.length > 0);
   }

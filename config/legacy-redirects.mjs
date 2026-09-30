@@ -160,6 +160,64 @@ export const legacyBookRedirectManifest = legacyBookRedirectDefinitions.map(
   }),
 );
 
+// Ebook retailer links for the shared catalog: fickledragon.com/{name}-amazon -> existing geni.us link.
+// Several codes predate the {slug} convention; reusing them keeps click history intact.
+const amazonRetailerLinks = [
+  ["/when-justice-calls-amazon", "justicecalls", "when-justice-calls"],
+  ["/deputy-crosshairs-amazon", "deputy", "deputy-crosshairs"],
+  ["/manhunt-sage-creek-amazon", "manhuntsagecreek", "manhunt-sage-creek"],
+  ["/junkyard-amazon", "junkyard-pirate", "junkyard-pirate"],
+  ["/olddogs-amazon", "olddogs", "old-dogs-older-tricks"],
+  ["/junkyard-spaceship-amazon", "spaceship", "junkyard-spaceship"],
+  ["/veterans-amazon", "junkyardveterans", "junkyard-veterans"],
+  ["/junkyard-raiders-amazon", "junkyard-raiders", "junkyard-raiders"],
+  ["/ghostship-amazon", "ghostship", "junkyard-ghost-ship"],
+  ["/commandos-amazon", "commandos", "junkyard-commandos"],
+  ["/mercenary-amazon", "mercenary-amazon", "junkyard-mercenary"],
+  ["/saboteur-amazon", "junkyard-saboteur", "junkyard-saboteur"],
+  ["/rookie-privateer-amazon", "rookieprivateer", "rookie-privateer"],
+  ["/fool-me-once-amazon", "foolmeonce", "fool-me-once"],
+  ["/parley-amazon", "parley", "parley"],
+  ["/big-pete-amazon", "bigpete", "big-pete"],
+  ["/smugglers-dilemma-amazon", "smugglersdilemma", "smugglers-dilemma"],
+  ["/cutpurse-amazon", "cutpurse", "cutpurse"],
+  ["/out-of-the-tank-amazon", "outofthetank", "out-of-the-tank"],
+  ["/buccaneers-amazon", "buccaneers-amazon", "buccaneers"],
+  ["/a-matter-of-honor-amazon", "matterofhonor", "a-matter-of-honor"],
+  ["/give-no-quarter-amazon", "givenoquarter", "give-no-quarter"],
+  ["/blockade-runner-amazon", "blockaderunner", "blockade-runner"],
+  ["/corsair-menace-amazon", "corsairmenace", "corsair-menace"],
+  ["/pursuit-amazon", "pursuitbold", "pursuit-of-the-bold"],
+  ["/fury-of-the-bold-amazon", "furybold", "fury-of-the-bold"],
+  ["/judgment-of-the-bold-amazon", "judgmentbold", "judgment-of-the-bold"],
+  ["/exile-amazon", "privateersinexile", "privateers-in-exile"],
+  ["/incursion-amazon", "incursionelea", "incursion-at-elea-station"],
+  ["/freebooters-amazon", "freebooters", "freebooters-hold"],
+  ["/blackcutlass-amazon", "blackcutlass", "black-cutlass"],
+  ["/supremacy-amazon", "supremacy", "privateers-supremacy"],
+  ["/drakon-prince-amazon", "drakon-prince", "drakon-prince"],
+  ["/wizard-prince-amazon", "wizard-prince", "wizard-prince"],
+  ["/the-unexpected-fellowship-amazon", "unexpected-fellowship", "the-unexpected-fellowship"],
+  ["/wizard-in-a-witchy-world-amazon", "wizwitchy", "wizard-in-a-witchy-world"],
+  ["/wicked-folk-amazon", "wickedfolk", "wicked-folk"],
+  ["/wizard-unleashed-amazon", "wizardunleashed", "wizard-unleashed"],
+  ["/boltguns-and-duct-tape-amazon", "boltguns-ducttape", "boltguns-and-duct-tape"],
+  ["/jump-drives-and-coffee-stains-amazon", "jumpdrives", "jump-drives-and-coffee-stains"],
+  ["/ray-guns-and-late-fees-amazon", "rayguns-latefees", "ray-guns-and-late-fees"],
+  ["/flying-saucers-and-chrome-plate-amazon", "flying-saucers", "flying-saucers-and-chrome-plate"],
+  ["/oldest-starfighter-amazon", "oldest-starfighter", "oldest-starfighter"],
+  ["/rogue-commander-amazon", "rogue-commander", "rogue-commander"],
+  ["/brigands-choice-amazon", "brigands-choice", "brigands-choice"],
+  ["/hostile-legacy-amazon", "hostile-legacy", "hostile-legacy"],
+  ["/forsaken-colony-amazon", "forsaken-colony", "forsaken-colony"],
+  ["/lesser-prince-amazon", "lesserprince", "lesser-prince"],
+  ["/uncommon-bravery-amazon", "uncommonbravery", "uncommon-bravery"],
+  ["/on-a-pale-ship-amazon", "paleship", "on-a-pale-ship"],
+  ["/life-of-a-miner-amazon", "life-of-a-miner", "life-of-a-miner"],
+  ["/pete-popeye-and-olive-amazon", "pete-popeye-and-olive", "pete-popeye-and-olive"],
+  ["/grave-consideration-amazon", "grave-consideration", "grave-consideration"],
+];
+
 export const legacyRetailerRedirectManifest = [
   {
     source: "/stray-evidence-amazon",
@@ -174,6 +232,12 @@ export const legacyRetailerRedirectManifest = [
     status: 308,
     rationale: "Bitter Lake Letters retailer link used by the shared catalog.",
   },
+  ...amazonRetailerLinks.map(([source, code, slug]) => ({
+    source,
+    destination: `https://geni.us/${code}`,
+    status: 308,
+    rationale: `Amazon ebook link for ${slug} used by the shared catalog.`,
+  })),
 ];
 
 export const legacyRedirectManifest = [
