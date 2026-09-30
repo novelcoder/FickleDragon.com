@@ -66,3 +66,8 @@ Book pages show factual catalog metadata, cover art, author relationships,
 series position, release information, retailer links, and Book JSON-LD. They
 are publisher records; richer author- and series-oriented reading experiences
 remain on the author sites.
+
+## Editions and listings
+
+Editions and retailer listings live in the `book_editions` and `edition_listings`
+tables. See `CATALOG_SCHEMA.md`.
