@@ -7,6 +7,7 @@ import {
   legacyBlogRedirectManifest,
 } from "../config/legacy-blog-redirects.mjs";
 import {
+  authorBookRedirectManifest,
   canonicalBookTrailingSlashRedirect,
   legacyBookRedirectManifest,
   legacyRedirectManifest,
@@ -69,10 +70,6 @@ const expectedBookMappings = new Map([
     "/books/jump-drives-and-coffee-stains",
   ],
   ["/rayguns-latefees", "/books/ray-guns-and-late-fees"],
-  [
-    "/flying-saucers-and-chrome-plate",
-    "/books/flying-saucers-and-chrome-plate",
-  ],
   ["/oldest-starfighter", "/books/oldest-starfighter"],
   ["/rogue-commander", "/books/rogue-commander"],
   ["/rookie-privateer", "/books/rookie-privateer"],
@@ -115,6 +112,17 @@ const expectedBookMappings = new Map([
   ],
 ]);
 
+const expectedAuthorBookMappings = new Map([
+  [
+    "/flying-saucers-and-chrome-plate",
+    "https://www.jamiemcfarlane.com/books/flying-saucers-and-chrome-plate",
+  ],
+  [
+    "/books/flying-saucers-and-chrome-plate",
+    "https://www.jamiemcfarlane.com/books/flying-saucers-and-chrome-plate",
+  ],
+]);
+
 const intentionallyExcludedSources = [
   "/privateer-tales-the-beginning",
   "/belirand-menace",
@@ -148,6 +156,16 @@ test("the approved book mappings are exact and permanent", () => {
 
   for (const redirect of legacyBookRedirectManifest) {
     assert.equal(redirect.destination, expectedBookMappings.get(redirect.source));
+    assert.equal(redirect.status, 308);
+    assert.ok(redirect.rationale.length > 0);
+  }
+});
+
+test("the retired Fickle Dragon book URLs redirect directly to Jamie's canonical page", () => {
+  assert.equal(authorBookRedirectManifest.length, expectedAuthorBookMappings.size);
+
+  for (const redirect of authorBookRedirectManifest) {
+    assert.equal(redirect.destination, expectedAuthorBookMappings.get(redirect.source));
     assert.equal(redirect.status, 308);
     assert.ok(redirect.rationale.length > 0);
   }
@@ -199,7 +217,7 @@ test("the manifest has unique normalized sources and safe destinations", () => {
   for (const { source, destination } of legacyRedirectManifest) {
     assert.match(
       source,
-      /^\/(?:[a-z0-9]+(?:-[a-z0-9]+)*|\d{4}\/\d{2}\/\d{2}\/[a-z0-9]+(?:-[a-z0-9]+)*)$/,
+      /^\/(?:books\/)?(?:[a-z0-9]+(?:-[a-z0-9]+)*|\d{4}\/\d{2}\/\d{2}\/[a-z0-9]+(?:-[a-z0-9]+)*)$/,
     );
 
     if (destination.startsWith("/")) {

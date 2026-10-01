@@ -1,6 +1,7 @@
 export const PUBLIC_BOOK_STATUSES = new Set(["published", "coming_soon"]);
 
 const EXCLUDED_PUBLIC_SERIES = new Set(["space-troopers"]);
+const EXCLUDED_PUBLIC_BOOK_SLUGS = new Set(["flying-saucers-and-chrome-plate"]);
 
 function normalizedSeriesSlug(series) {
   if (!series) return "";
@@ -18,6 +19,7 @@ function normalizedSeriesSlug(series) {
 export function isPublicCatalogBook(book) {
   return (
     PUBLIC_BOOK_STATUSES.has(book.status ?? "") &&
+    !EXCLUDED_PUBLIC_BOOK_SLUGS.has(book.slug ?? "") &&
     !EXCLUDED_PUBLIC_SERIES.has(normalizedSeriesSlug(book.series_id))
   );
 }
