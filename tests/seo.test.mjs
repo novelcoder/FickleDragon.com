@@ -42,7 +42,7 @@ test("production robots allow the site and identify its canonical sitemap", () =
   });
 });
 
-test("the public catalog excludes private states and the outside-publisher Space Troopers series", () => {
+test("the public catalog excludes private states and author-owned titles", () => {
   assert.equal(
     isPublicCatalogBook({
       status: "published",
@@ -61,6 +61,14 @@ test("the public catalog excludes private states and the outside-publisher Space
     isPublicCatalogBook({
       status: "published",
       series_id: { name: "Space Troopers" },
+    }),
+    false,
+  );
+  assert.equal(
+    isPublicCatalogBook({
+      slug: "flying-saucers-and-chrome-plate",
+      status: "published",
+      series_id: { slug: "spaceship-mechanic" },
     }),
     false,
   );
@@ -87,6 +95,11 @@ test("the production sitemap contains canonical static pages and eligible books 
         slug: "forthcoming-book",
         status: "coming_soon",
         series_id: { slug: "owned-series" },
+      },
+      {
+        slug: "flying-saucers-and-chrome-plate",
+        status: "published",
+        series_id: { slug: "spaceship-mechanic" },
       },
       {
         slug: "space-troopers-one",
@@ -117,6 +130,7 @@ test("the production sitemap contains canonical static pages and eligible books 
     `${SITE_ORIGIN}/books/published-book`,
   ]);
   assert.ok(!urls.includes(`${SITE_ORIGIN}/catalog`));
+  assert.ok(!urls.some((url) => url.includes("flying-saucers-and-chrome-plate")));
   assert.ok(!urls.some((url) => url.includes("space-troopers")));
 });
 

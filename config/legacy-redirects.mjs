@@ -75,11 +75,6 @@ const legacyBookRedirectDefinitions = [
     "Jump Drives and Coffee Stains",
   ],
   ["/rayguns-latefees", "ray-guns-and-late-fees", "Ray Guns and Late Fees"],
-  [
-    "/flying-saucers-and-chrome-plate",
-    "flying-saucers-and-chrome-plate",
-    "Flying Saucers and Chrome Plate",
-  ],
   ["/oldest-starfighter", "oldest-starfighter", "The Oldest Starfighter"],
   ["/rogue-commander", "rogue-commander", "Rogue Commander"],
   ["/rookie-privateer", "rookie-privateer", "Rookie Privateer"],
@@ -160,6 +155,26 @@ export const legacyBookRedirectManifest = legacyBookRedirectDefinitions.map(
   }),
 );
 
+const flyingSaucersCanonicalUrl =
+  "https://www.jamiemcfarlane.com/books/flying-saucers-and-chrome-plate";
+
+export const authorBookRedirectManifest = [
+  {
+    source: "/flying-saucers-and-chrome-plate",
+    destination: flyingSaucersCanonicalUrl,
+    status: 308,
+    rationale:
+      "Flying Saucers and Chrome Plate belongs at Jamie McFarlane's canonical book page.",
+  },
+  {
+    source: "/books/flying-saucers-and-chrome-plate",
+    destination: flyingSaucersCanonicalUrl,
+    status: 308,
+    rationale:
+      "Jamie McFarlane's book page is the sole canonical URL for Flying Saucers and Chrome Plate.",
+  },
+];
+
 export const legacyRetailerRedirectManifest = [
   {
     source: "/stray-evidence-amazon",
@@ -179,6 +194,7 @@ export const legacyRetailerRedirectManifest = [
 export const legacyRedirectManifest = [
   ...legacySeriesRedirectManifest,
   ...legacyRetailerRedirectManifest,
+  ...authorBookRedirectManifest,
   ...legacyBookRedirectManifest,
   ...legacyBlogRedirectManifest,
   legacyBlogFeedRedirect,
