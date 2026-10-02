@@ -14,6 +14,7 @@ import {
   legacyRedirectsForNext,
   legacyRetailerRedirectManifest,
   legacySeriesRedirectManifest,
+  readerSignupRedirectManifest,
 } from "../config/legacy-redirects.mjs";
 import { SITE_ORIGIN } from "../config/seo.mjs";
 
@@ -130,6 +131,29 @@ const intentionallyExcludedSources = [
   "/fantasy-books",
   "/books/privateer-tales",
 ];
+
+test("the printed /keep-in-touch URL reaches the newsletter signup without caching", () => {
+  assert.deepEqual(
+    readerSignupRedirectManifest.map(({ source, destination, status }) => ({
+      source,
+      destination,
+      status,
+    })),
+    [
+      {
+        source: "/keep-in-touch",
+        destination: "https://www.jamiemcfarlane.com/#free-books",
+        status: 307,
+      },
+    ],
+  );
+  assert.ok(readerSignupRedirectManifest[0].rationale.length > 0);
+  assert.ok(
+    legacyRedirectsForNext().some(
+      ({ source, permanent }) => source === "/keep-in-touch/" && permanent === false,
+    ),
+  );
+});
 
 test("the approved series mappings are exact and permanent", () => {
   assert.equal(legacySeriesRedirectManifest.length, expectedSeriesMappings.size);
@@ -251,20 +275,20 @@ test("no configured destination creates a redirect chain or loop", () => {
   }
 });
 
-test("Next.js receives the exact permanent redirect configuration", () => {
+test("Next.js receives the exact redirect configuration", () => {
   assert.deepEqual(
     legacyRedirectsForNext(),
     [
-      ...legacyRedirectManifest.flatMap(({ source, destination }) => [
+      ...legacyRedirectManifest.flatMap(({ source, destination, status }) => [
         {
           source,
           destination,
-          permanent: true,
+          permanent: status === 308,
         },
         {
           source: `${source}/`,
           destination,
-          permanent: true,
+          permanent: status === 308,
         },
       ]),
       canonicalBookTrailingSlashRedirect,

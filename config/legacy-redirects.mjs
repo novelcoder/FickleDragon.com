@@ -191,7 +191,21 @@ export const legacyRetailerRedirectManifest = [
   },
 ];
 
+// Printed in the back matter of every book, so this path must never 404.
+// It is temporary (307) on purpose: browsers never cache the destination,
+// so the signup form can move without touching the books.
+export const readerSignupRedirectManifest = [
+  {
+    source: "/keep-in-touch",
+    destination: "https://www.jamiemcfarlane.com/#free-books",
+    status: 307,
+    rationale:
+      "Book back matter sends readers here for the newsletter and free starter library, which live on Jamie McFarlane's site.",
+  },
+];
+
 export const legacyRedirectManifest = [
+  ...readerSignupRedirectManifest,
   ...legacySeriesRedirectManifest,
   ...legacyRetailerRedirectManifest,
   ...authorBookRedirectManifest,

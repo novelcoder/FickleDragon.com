@@ -118,7 +118,7 @@ after(async () => {
   ]);
 });
 
-test("every configured source returns its exact permanent destination", async () => {
+test("every configured source returns its exact destination and status", async () => {
   const failures = [];
 
   await mapWithConcurrency(legacyRedirectManifest, 8, async (redirect) => {
@@ -129,7 +129,7 @@ test("every configured source returns its exact permanent destination", async ()
     };
     const expected = {
       location: expectedLocation(redirect.destination),
-      status: 308,
+      status: redirect.status,
     };
 
     if (actual.status !== expected.status || actual.location !== expected.location) {
@@ -172,7 +172,7 @@ test("query strings are preserved for every redirect", async () => {
     const actual = response.headers.get("location");
     const expected = expectedLocation(redirect.destination, "?source=redirect-test");
 
-    if (response.status !== 308 || actual !== expected) {
+    if (response.status !== redirect.status || actual !== expected) {
       failures.push({ source: redirect.source, expected, actual, status: response.status });
     }
   });
@@ -191,7 +191,7 @@ test("case and trailing-slash variants resolve directly", async () => {
       const actual = response.headers.get("location");
       const expected = expectedLocation(redirect.destination);
 
-      if (response.status !== 308 || actual !== expected) {
+      if (response.status !== redirect.status || actual !== expected) {
         failures.push({ variant, expected, actual, status: response.status });
       }
     }
