@@ -142,7 +142,7 @@ test("the printed /keep-in-touch URL reaches the newsletter signup without cachi
     [
       {
         source: "/keep-in-touch",
-        destination: "https://www.jamiemcfarlane.com/#free-books",
+        destination: "https://www.jamiemcfarlane.com/",
         status: 307,
       },
     ],
