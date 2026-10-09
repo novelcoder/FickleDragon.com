@@ -13,7 +13,10 @@ export function SiteFooter() {
           width={32}
           height={32}
         />
-        <span>Fickle Dragon Publishing LLC · An independent press</span>
+        <div className="footer-brand-text">
+          <span>Fickle Dragon Publishing LLC · An independent press</span>
+          <p className="footer-disclosure">{AMAZON_ASSOCIATE_DISCLOSURE}</p>
+        </div>
       </div>
       <div className="footer-links" aria-label="Footer links">
         <Link href="/shop">Signed books</Link>
@@ -23,7 +26,6 @@ export function SiteFooter() {
         <a href="https://jamiemcfarlane.com">Jamie McFarlane</a>
         <a href="https://macworden.com">Mac Worden</a>
       </div>
-      <p className="footer-disclosure">{AMAZON_ASSOCIATE_DISCLOSURE}</p>
     </footer>
   );
 }
