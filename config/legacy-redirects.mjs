@@ -175,6 +175,86 @@ export const authorBookRedirectManifest = [
   },
 ];
 
+// Retired WordPress retailer paths (/<book>-amazon). The shared catalog used
+// them as store links and they may be printed in book back matter, so they
+// must keep resolving. Destinations are the untagged geni.us links: back
+// matter must never carry the Amazon Associates tag, so never point these at
+// an -afl (WEB-AFFILIATE) link.
+const legacyAmazonRetailerDefinitions = [
+  ["/junkyard-amazon", "junkyard-pirate", "Junkyard Pirate"],
+  ["/olddogs-amazon", "olddogs", "Old Dogs, Older Tricks"],
+  ["/junkyard-spaceship-amazon", "spaceship", "Junkyard Spaceship"],
+  ["/veterans-amazon", "junkyardveterans", "Junkyard Veterans"],
+  ["/junkyard-raiders-amazon", "junkyard-raiders", "Junkyard Raiders"],
+  ["/ghostship-amazon", "ghostship", "Junkyard Ghost Ship"],
+  ["/commandos-amazon", "commandos", "Junkyard Commandos"],
+  ["/mercenary-amazon", "junkyard-mercenary", "Junkyard Mercenary"],
+  ["/saboteur-amazon", "junkyard-saboteur", "Junkyard Saboteur"],
+  ["/corsair-menace-amazon", "corsairmenace", "Corsair Menace"],
+  ["/pursuit-amazon", "pursuitbold", "Pursuit of the Bold"],
+  ["/exile-amazon", "privateersinexile", "Privateers in Exile"],
+  ["/incursion-amazon", "incursionelea", "Incursion at Elea Station"],
+  ["/freebooters-amazon", "freebooters", "Freebooter's Hold"],
+  ["/blackcutlass-amazon", "blackcutlass", "Black Cutlass"],
+  ["/supremacy-amazon", "supremacy", "Privateer's Supremacy"],
+  ["/drakon-prince-amazon", "drakon-prince", "Drakon Prince"],
+  ["/manhunt-amazon", "manhuntsagecreek", "Manhunt at Sage Creek"],
+  ["/rebels-strike-amazon", "rebels-strike", "Rebel's Strike"],
+  ["/rebelscall-amazon", "rebels-call", "Rebel's Call"],
+  ["/rebelsrun-amazon", "rebels-ru", "Rebel's Run"],
+  ["/bigpete-amazon", "bigpete", "Big Pete"],
+  ["/blockade-runner-amazon", "blockaderunner", "Blockade Runner"],
+  ["/buccaneers-amazon", "buccaneers-amazon", "Buccaneers"],
+  ["/cutpurse-amazon", "cutpurse", "Cutpurse"],
+  ["/fool-me-once-amazon", "foolmeonce", "Fool Me Once"],
+  ["/fury-amazon", "furybold", "Fury of the Bold"],
+  ["/give-no-quarter-amazon", "givenoquarter", "Give No Quarter"],
+  ["/judgment-amazon", "judgmentbold", "Judgment of the Bold"],
+  ["/lesserprince-amazon", "lesserprince", "Lesser Prince"],
+  ["/matterofhonor-amazon", "matterofhonor", "A Matter of Honor"],
+  ["/outofthetank-amazon", "outofthetank", "Out of the Tank"],
+  ["/parley-amazon", "parley", "Parley"],
+  ["/rookie-privateer-amazon", "rookieprivateer", "Rookie Privateer"],
+  ["/smugglers-amazon", "smugglersdilemma", "Smuggler's Dilemma"],
+  ["/wicked-folk-amazon", "wickedfolk", "Wicked Folk"],
+  ["/wizard-amazon", "wizwitchy", "Wizard in a Witchy World"],
+  ["/wizard-unleashed-amazon", "wizardunleashed", "Wizard Unleashed"],
+  ["/deputy-amazon", "deputy", "Deputy in the Crosshairs"],
+  ["/justice-amazon", "justicecalls", "When Justice Calls"],
+  [
+    "/oldest-starfighter-amazon",
+    "oldest-starfighter",
+    "The Oldest Starfighter",
+  ],
+  ["/rogue-commander-amazon", "rogue-commander", "Rogue Commander"],
+  ["/boltguns-amazon", "boltguns-ducttape", "Boltguns and Duct Tape"],
+  ["/jump-drives-amazon", "jumpdrives", "Jump Drives and Coffee Stains"],
+  ["/rayguns-amazon", "rayguns-latefees", "Ray Guns and Late Fees"],
+  ["/brigands-choice-amazon", "brigands-choice", "Brigand's Choice"],
+  ["/forsaken-colony-amazon", "forsaken-colony", "Forsaken Colony"],
+  ["/hostile-legacy-amazon", "hostile-legacy", "Hostile Legacy"],
+  [
+    "/bitter-lake-letters-amazon",
+    "BitterLakeLetters",
+    "The Bitter Lake Letters",
+  ],
+  [
+    "/flying-saucers-amazon",
+    "flying-saucers",
+    "Flying Saucers and Chrome Plate",
+  ],
+  ["/wizard-prince-amazon", "wizard-prince", "Wizard Prince"],
+];
+
+function legacyAmazonRetailerRedirects() {
+  return legacyAmazonRetailerDefinitions.map(([source, code, title]) => ({
+    source,
+    destination: `https://geni.us/${code}`,
+    status: 308,
+    rationale: `${title} legacy retailer path from the retired WordPress site.`,
+  }));
+}
+
 export const legacyRetailerRedirectManifest = [
   {
     source: "/stray-evidence-amazon",
@@ -189,6 +269,7 @@ export const legacyRetailerRedirectManifest = [
     status: 308,
     rationale: "Bitter Lake Letters retailer link used by the shared catalog.",
   },
+  ...legacyAmazonRetailerRedirects(),
 ];
 
 // Printed in the back matter of every book, so this path must never 404.

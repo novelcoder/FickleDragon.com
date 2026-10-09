@@ -52,6 +52,57 @@ const expectedSeriesMappings = new Map([
 const expectedRetailerMappings = new Map([
   ["/stray-evidence-amazon", "https://geni.us/stray-evidence"],
   ["/bitterlakeletters-amazon", "https://geni.us/BitterLakeLetters"],
+  ["/junkyard-amazon", "https://geni.us/junkyard-pirate"],
+  ["/olddogs-amazon", "https://geni.us/olddogs"],
+  ["/junkyard-spaceship-amazon", "https://geni.us/spaceship"],
+  ["/veterans-amazon", "https://geni.us/junkyardveterans"],
+  ["/junkyard-raiders-amazon", "https://geni.us/junkyard-raiders"],
+  ["/ghostship-amazon", "https://geni.us/ghostship"],
+  ["/commandos-amazon", "https://geni.us/commandos"],
+  ["/mercenary-amazon", "https://geni.us/junkyard-mercenary"],
+  ["/saboteur-amazon", "https://geni.us/junkyard-saboteur"],
+  ["/corsair-menace-amazon", "https://geni.us/corsairmenace"],
+  ["/pursuit-amazon", "https://geni.us/pursuitbold"],
+  ["/exile-amazon", "https://geni.us/privateersinexile"],
+  ["/incursion-amazon", "https://geni.us/incursionelea"],
+  ["/freebooters-amazon", "https://geni.us/freebooters"],
+  ["/blackcutlass-amazon", "https://geni.us/blackcutlass"],
+  ["/supremacy-amazon", "https://geni.us/supremacy"],
+  ["/drakon-prince-amazon", "https://geni.us/drakon-prince"],
+  ["/manhunt-amazon", "https://geni.us/manhuntsagecreek"],
+  ["/rebels-strike-amazon", "https://geni.us/rebels-strike"],
+  ["/rebelscall-amazon", "https://geni.us/rebels-call"],
+  ["/rebelsrun-amazon", "https://geni.us/rebels-ru"],
+  ["/bigpete-amazon", "https://geni.us/bigpete"],
+  ["/blockade-runner-amazon", "https://geni.us/blockaderunner"],
+  ["/buccaneers-amazon", "https://geni.us/buccaneers-amazon"],
+  ["/cutpurse-amazon", "https://geni.us/cutpurse"],
+  ["/fool-me-once-amazon", "https://geni.us/foolmeonce"],
+  ["/fury-amazon", "https://geni.us/furybold"],
+  ["/give-no-quarter-amazon", "https://geni.us/givenoquarter"],
+  ["/judgment-amazon", "https://geni.us/judgmentbold"],
+  ["/lesserprince-amazon", "https://geni.us/lesserprince"],
+  ["/matterofhonor-amazon", "https://geni.us/matterofhonor"],
+  ["/outofthetank-amazon", "https://geni.us/outofthetank"],
+  ["/parley-amazon", "https://geni.us/parley"],
+  ["/rookie-privateer-amazon", "https://geni.us/rookieprivateer"],
+  ["/smugglers-amazon", "https://geni.us/smugglersdilemma"],
+  ["/wicked-folk-amazon", "https://geni.us/wickedfolk"],
+  ["/wizard-amazon", "https://geni.us/wizwitchy"],
+  ["/wizard-unleashed-amazon", "https://geni.us/wizardunleashed"],
+  ["/deputy-amazon", "https://geni.us/deputy"],
+  ["/justice-amazon", "https://geni.us/justicecalls"],
+  ["/oldest-starfighter-amazon", "https://geni.us/oldest-starfighter"],
+  ["/rogue-commander-amazon", "https://geni.us/rogue-commander"],
+  ["/boltguns-amazon", "https://geni.us/boltguns-ducttape"],
+  ["/jump-drives-amazon", "https://geni.us/jumpdrives"],
+  ["/rayguns-amazon", "https://geni.us/rayguns-latefees"],
+  ["/brigands-choice-amazon", "https://geni.us/brigands-choice"],
+  ["/forsaken-colony-amazon", "https://geni.us/forsaken-colony"],
+  ["/hostile-legacy-amazon", "https://geni.us/hostile-legacy"],
+  ["/bitter-lake-letters-amazon", "https://geni.us/BitterLakeLetters"],
+  ["/flying-saucers-amazon", "https://geni.us/flying-saucers"],
+  ["/wizard-prince-amazon", "https://geni.us/wizard-prince"],
 ]);
 
 const expectedBookMappings = new Map([
@@ -172,6 +223,18 @@ test("the approved retailer mappings are exact and permanent", () => {
     assert.equal(redirect.destination, expectedRetailerMappings.get(redirect.source));
     assert.equal(redirect.status, 308);
     assert.ok(redirect.rationale.length > 0);
+  }
+});
+
+test("retailer redirects never carry the affiliate tag or use smarturl.it", () => {
+  for (const redirect of legacyRetailerRedirectManifest) {
+    const url = new URL(redirect.destination);
+    assert.equal(url.hostname, "geni.us", redirect.source);
+    assert.doesNotMatch(url.pathname, /-afl$/i, redirect.source);
+  }
+
+  for (const redirect of legacyRedirectManifest) {
+    assert.doesNotMatch(redirect.destination, /smarturl\.it/i, redirect.source);
   }
 });
 
