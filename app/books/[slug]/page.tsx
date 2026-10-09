@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { SITE_ORIGIN, serializeJsonLd } from "@/config/seo.mjs";
+import { AMAZON_ASSOCIATE_DISCLOSURE } from "@/config/affiliate-disclosure.mjs";
 import { SiteFooter } from "@/app/ui/site-footer";
 import { SiteHeader } from "@/app/ui/site-header";
 import { findPublicBookBySlug } from "@/lib/catalog";
@@ -165,6 +166,9 @@ export default async function BookPage({ params }: BookPageProps) {
                 </a>
               )}
             </div>
+            {book.store_url && (
+              <p className={styles.affiliateNote}>{AMAZON_ASSOCIATE_DISCLOSURE}</p>
+            )}
           </div>
         </article>
       </main>

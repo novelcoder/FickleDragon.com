@@ -167,6 +167,13 @@
   color: var(--rust);
 }
 
+.affiliateNote {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
 @media (max-width: 760px) {
   .book {
     grid-template-columns: 1fr;

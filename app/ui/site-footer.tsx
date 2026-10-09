@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { AMAZON_ASSOCIATE_DISCLOSURE } from "@/config/affiliate-disclosure.mjs";
+
 export function SiteFooter() {
   return (
     <footer className="site-footer">
@@ -21,6 +23,7 @@ export function SiteFooter() {
         <a href="https://jamiemcfarlane.com">Jamie McFarlane</a>
         <a href="https://macworden.com">Mac Worden</a>
       </div>
+      <p className="footer-disclosure">{AMAZON_ASSOCIATE_DISCLOSURE}</p>
     </footer>
   );
 }
