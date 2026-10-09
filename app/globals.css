@@ -548,6 +548,18 @@ h2 {
   color: #f1d8a7;
 }
 
+.footer-brand-text {
+  display: grid;
+  gap: 3px;
+}
+
+.footer-disclosure {
+  margin: 0;
+  color: rgb(255 250 242 / 0.62);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
 .cookie-consent {
   position: fixed;
   z-index: 1000;

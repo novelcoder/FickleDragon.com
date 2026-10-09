@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { AMAZON_ASSOCIATE_DISCLOSURE } from "@/config/affiliate-disclosure.mjs";
+
 export function SiteFooter() {
   return (
     <footer className="site-footer">
@@ -11,7 +13,10 @@ export function SiteFooter() {
           width={32}
           height={32}
         />
-        <span>Fickle Dragon Publishing LLC · An independent press</span>
+        <div className="footer-brand-text">
+          <span>Fickle Dragon Publishing LLC · An independent press</span>
+          <p className="footer-disclosure">{AMAZON_ASSOCIATE_DISCLOSURE}</p>
+        </div>
       </div>
       <div className="footer-links" aria-label="Footer links">
         <Link href="/shop">Signed books</Link>
