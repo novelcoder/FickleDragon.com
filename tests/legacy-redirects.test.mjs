@@ -52,6 +52,23 @@ const expectedSeriesMappings = new Map([
 const expectedRetailerMappings = new Map([
   ["/stray-evidence-amazon", "https://geni.us/stray-evidence"],
   ["/bitterlakeletters-amazon", "https://geni.us/BitterLakeLetters"],
+  ["/junkyard-amazon", "https://geni.us/junkyard-pirate"],
+  ["/olddogs-amazon", "https://geni.us/olddogs"],
+  ["/junkyard-spaceship-amazon", "https://geni.us/spaceship"],
+  ["/veterans-amazon", "https://geni.us/junkyardveterans"],
+  ["/junkyard-raiders-amazon", "https://geni.us/junkyard-raiders"],
+  ["/ghostship-amazon", "https://geni.us/ghostship"],
+  ["/commandos-amazon", "https://geni.us/commandos"],
+  ["/mercenary-amazon", "https://geni.us/junkyard-mercenary"],
+  ["/saboteur-amazon", "https://geni.us/junkyard-saboteur"],
+  ["/corsair-menace-amazon", "https://geni.us/corsairmenace"],
+  ["/pursuit-amazon", "https://geni.us/pursuitbold"],
+  ["/exile-amazon", "https://geni.us/privateersinexile"],
+  ["/incursion-amazon", "https://geni.us/incursionelea"],
+  ["/freebooters-amazon", "https://geni.us/freebooters"],
+  ["/blackcutlass-amazon", "https://geni.us/blackcutlass"],
+  ["/supremacy-amazon", "https://geni.us/supremacy"],
+  ["/drakon-prince-amazon", "https://geni.us/drakon-prince"],
 ]);
 
 const expectedBookMappings = new Map([
@@ -172,6 +189,18 @@ test("the approved retailer mappings are exact and permanent", () => {
     assert.equal(redirect.destination, expectedRetailerMappings.get(redirect.source));
     assert.equal(redirect.status, 308);
     assert.ok(redirect.rationale.length > 0);
+  }
+});
+
+test("retailer redirects never carry the affiliate tag or use smarturl.it", () => {
+  for (const redirect of legacyRetailerRedirectManifest) {
+    const url = new URL(redirect.destination);
+    assert.equal(url.hostname, "geni.us", redirect.source);
+    assert.doesNotMatch(url.pathname, /-afl$/i, redirect.source);
+  }
+
+  for (const redirect of legacyRedirectManifest) {
+    assert.doesNotMatch(redirect.destination, /smarturl\.it/i, redirect.source);
   }
 });
 

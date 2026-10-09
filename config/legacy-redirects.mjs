@@ -175,6 +175,40 @@ export const authorBookRedirectManifest = [
   },
 ];
 
+// Retired WordPress retailer paths (/<book>-amazon). The shared catalog used
+// them as store links and they may be printed in book back matter, so they
+// must keep resolving. Destinations are the untagged geni.us links: back
+// matter must never carry the Amazon Associates tag, so never point these at
+// an -afl (WEB-AFFILIATE) link.
+const legacyAmazonRetailerDefinitions = [
+  ["/junkyard-amazon", "junkyard-pirate", "Junkyard Pirate"],
+  ["/olddogs-amazon", "olddogs", "Old Dogs, Older Tricks"],
+  ["/junkyard-spaceship-amazon", "spaceship", "Junkyard Spaceship"],
+  ["/veterans-amazon", "junkyardveterans", "Junkyard Veterans"],
+  ["/junkyard-raiders-amazon", "junkyard-raiders", "Junkyard Raiders"],
+  ["/ghostship-amazon", "ghostship", "Junkyard Ghost Ship"],
+  ["/commandos-amazon", "commandos", "Junkyard Commandos"],
+  ["/mercenary-amazon", "junkyard-mercenary", "Junkyard Mercenary"],
+  ["/saboteur-amazon", "junkyard-saboteur", "Junkyard Saboteur"],
+  ["/corsair-menace-amazon", "corsairmenace", "Corsair Menace"],
+  ["/pursuit-amazon", "pursuitbold", "Pursuit of the Bold"],
+  ["/exile-amazon", "privateersinexile", "Privateers in Exile"],
+  ["/incursion-amazon", "incursionelea", "Incursion at Elea Station"],
+  ["/freebooters-amazon", "freebooters", "Freebooter's Hold"],
+  ["/blackcutlass-amazon", "blackcutlass", "Black Cutlass"],
+  ["/supremacy-amazon", "supremacy", "Privateer's Supremacy"],
+  ["/drakon-prince-amazon", "drakon-prince", "Drakon Prince"],
+];
+
+function legacyAmazonRetailerRedirects() {
+  return legacyAmazonRetailerDefinitions.map(([source, code, title]) => ({
+    source,
+    destination: `https://geni.us/${code}`,
+    status: 308,
+    rationale: `${title} legacy retailer path from the retired WordPress site.`,
+  }));
+}
+
 export const legacyRetailerRedirectManifest = [
   {
     source: "/stray-evidence-amazon",
@@ -189,6 +223,7 @@ export const legacyRetailerRedirectManifest = [
     status: 308,
     rationale: "Bitter Lake Letters retailer link used by the shared catalog.",
   },
+  ...legacyAmazonRetailerRedirects(),
 ];
 
 // Printed in the back matter of every book, so this path must never 404.
